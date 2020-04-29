@@ -1,10 +1,12 @@
 import React from 'react';
 import './App.css';
+import AddPost from './components/AddContent/AddPost'
+
 
 function App() {
   return (
     <div className="App" >
-      Hello
+      <AddPost />
     </div>
   );
 }
