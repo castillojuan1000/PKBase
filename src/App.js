@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import AddPost from './components/AddContent/AddPost'
+import AddContent from './components/AddContent/AddContent'
 
 
 function App() {
   return (
     <div className="App" >
-      <AddPost />
+      <AddContent />
     </div>
   );
 }

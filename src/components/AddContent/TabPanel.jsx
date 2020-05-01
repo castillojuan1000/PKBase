@@ -5,17 +5,19 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import { orange } from '@material-ui/core/colors';
 
-import Form from './Form'
-import Select from './Select'
+import PostForm from './PostForm'
+import ImageForm from './ImageForm'
+import LinkForm from './LinkForm'
+
 
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
-  //Todo: children should not be inside of a typo
+
   return (
     <div
       role="tabpanel"
@@ -49,9 +51,15 @@ function a11yProps(index) {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.background.paper,
-    width: 500,
+    backgroundColor: orange[200],
+    width: '65%',
+    borderRadius: 5,
+    margin: '10vh auto'
   },
+  appbar: {
+    backgroundColor: orange[400]
+  },
+
 }));
 
 export default function FullWidthTabs() {
@@ -67,20 +75,22 @@ export default function FullWidthTabs() {
     setValue(index);
   };
 
+
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="default">
+      <AppBar position="static" className={classes.appbar}>
         <Tabs
+          className={classes.tabs}
           value={value}
           onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
+          indicatorColor="secondary"
           variant="fullWidth"
-          aria-label="full width tabs example"
+          aria-label="posts types"
+
         >
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
+          <Tab label="Post" {...a11yProps(0)} />
+          <Tab label="Image" {...a11yProps(1)} />
+          <Tab label="Link" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <SwipeableViews
@@ -90,17 +100,17 @@ export default function FullWidthTabs() {
       >
 
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <Form />
+          <PostForm />
         </TabPanel>
 
 
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <Form />
+          <ImageForm />
         </TabPanel>
 
 
         <TabPanel value={value} index={2} dir={theme.direction}>
-          <Form />
+          <LinkForm />
         </TabPanel>
 
       </SwipeableViews>

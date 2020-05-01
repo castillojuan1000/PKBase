@@ -1,11 +1,11 @@
 import React from 'react'
 import Select from './Select'
 
-export default function Form() {
+export default function LinkForm() {
   return (
     <>
       <Select />
-      more to add ...
+      link form to be added ...
     </>
   )
 }
