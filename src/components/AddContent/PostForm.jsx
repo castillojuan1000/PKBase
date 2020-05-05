@@ -51,6 +51,7 @@ export default function PostForm() {
     <form
       className={classes.root}
       onSubmit={handleSubmit}
+
     >
       <Grid container
         spacing={3}
