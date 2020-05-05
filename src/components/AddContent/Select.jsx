@@ -14,28 +14,21 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function NativeSelects() {
+export default function NativeSelects({ onChange }) {
   const classes = useStyles();
-  const [category, setCategory] = useState("");
-
-  const handleChange = event => {
-    setCategory(event.target.value);
-  };
-
 
   return (
     <>
       <FormControl variant="outlined" className={classes.formControl}>
         <InputLabel htmlFor="outlined-age-native-simple">
-          Choose a category
+          Select a category
         </InputLabel>
         <Select
           native
-          value={category}
-          onChange={handleChange}
-          label="Choose a category"
+          onChange={onChange}
+          label="Select a category"
           inputProps={{
-            name: "Choose a category",
+            name: "Select a category",
             id: "outlined-age-native-simple"
           }}
         >
