@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Select from './Select'
+import '../../image.css'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -10,10 +11,49 @@ import Button from '@material-ui/core/Button';
 
 export default function PostForm() {
   const classes = useStyles();
+  const [category, setCategory] = useState('');
+  const [title, setTitle] = useState('')
+
+
+  const handleCategory = (e) => {
+    setCategory(e.target.value)
+  }
+
+  const handleTitle = (e) => {
+    setTitle(e.target.value)
+  }
+
+
+
+  let imageInput = null;
+
+  const file = () => {
+    //? if image input is not null get me the first file
+    return imageInput && imageInput.files[0].name
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    const image = {
+      createdAt: new Date(),
+      category,
+      title,
+      file: file()
+    }
+
+    console.log(image)
+
+    setTitle("")
+
+  }
+
+
+
   return (
     <form
       className={classes.root}
-    // onSubmit={handleSubmit}
+      onSubmit={handleSubmit}
     >
       <Grid container
         spacing={3}
@@ -22,7 +62,7 @@ export default function PostForm() {
         alignItems="center">
         <Grid item xs={12}>
 
-          <Select />
+          <Select onChange={handleCategory} />
 
           <TextField
 
@@ -36,13 +76,23 @@ export default function PostForm() {
             }}
             variant="outlined"
             name="Title"
-          // value={title}
-          // onChange={handleTitle}
+            value={title}
+            onChange={handleTitle}
           />
 
+          <div className="file-upload">
+            <div className="file-select">
+              <div className="file-select-button" id="fileName">
+                Select An Image
+                </div>
+              <div className="file-select-name" id="noFile">
+                No file chosen...
+                </div>
+              <input type="file" namename="chooseFile" id="chooseFile" ref={ref => imageInput = ref} />
+            </div>
+          </div>
 
-
-          <TextField
+          {/* <TextField
 
             label="Description"
             style={{ margin: 8 }}
@@ -56,9 +106,9 @@ export default function PostForm() {
             multiline
             rows="2"
             name="content"
-          // value={content}
-          // onChange={handleContent}
-          />
+            value={description}
+            onChange={handleDescription}
+          /> */}
 
 
           <MyButton

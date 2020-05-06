@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import AddContent from './components/AddContent/AddContent'
 
 

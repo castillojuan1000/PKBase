@@ -52,7 +52,7 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: orange[200],
-    width: '40%',
+    width: '45%',
     borderRadius: 5,
     margin: '10vh auto'
   },

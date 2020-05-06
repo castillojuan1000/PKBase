@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Select from './Select'
 
 import { makeStyles } from '@material-ui/core/styles';
-
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
@@ -11,11 +10,51 @@ import Button from '@material-ui/core/Button';
 
 export default function PostForm() {
   const classes = useStyles();
+
+  const [category, setCategory] = useState('');
+  const [title, setTitle] = useState('');
+  const [url, setUrl] = useState('');
+  // const [description, setDescription] = useState('');
+
+  const handleCategory = (e) => {
+    setCategory(e.target.value)
+  }
+
+  const handleTitle = (e) => {
+    setTitle(e.target.value)
+  }
+
+  const handleUrl = (e) => {
+    setUrl(e.target.value)
+  }
+
+  // const handleDescription = (e) => {
+  //   setDescription(e.target.value)
+  // }
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const link = {
+      createdAt: new Date(),
+      category,
+      title,
+      url,
+      // description,
+    }
+
+    console.log(link)
+    setTitle('')
+    setUrl('')
+    // setDescription('')
+  }
+
   return (
 
     <form
       className={classes.root}
-    // onSubmit={handleSubmit}
+      onSubmit={handleSubmit}
     >
       <Grid container
         spacing={3}
@@ -24,7 +63,7 @@ export default function PostForm() {
         alignItems="center">
         <Grid item xs={12}>
 
-          <Select />
+          <Select onChange={handleCategory} />
 
           <TextField
 
@@ -38,8 +77,8 @@ export default function PostForm() {
             }}
             variant="outlined"
             name="Title"
-          // value={title}
-          // onChange={handleTitle}
+            value={title}
+            onChange={handleTitle}
           />
           <TextField
 
@@ -53,10 +92,10 @@ export default function PostForm() {
             }}
             variant="outlined"
             name="URL"
-          // value={title}
-          // onChange={handleTitle}
+            value={url}
+            onChange={handleUrl}
           />
-          <TextField
+          {/* <TextField
 
             label="Description"
             style={{ margin: 8 }}
@@ -70,9 +109,9 @@ export default function PostForm() {
             multiline
             rows="2"
             name="content"
-          // value={content}
-          // onChange={handleContent}
-          />
+            value={description}
+            onChange={handleDescription}
+          /> */}
 
 
           <MyButton
