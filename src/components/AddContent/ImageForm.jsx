@@ -15,6 +15,8 @@ export default function PostForm() {
   const [title, setTitle] = useState('')
 
 
+
+
   const handleCategory = (e) => {
     setCategory(e.target.value)
   }
@@ -42,7 +44,7 @@ export default function PostForm() {
       file: file()
     }
 
-    console.log(image)
+
 
     setTitle("")
 
@@ -51,6 +53,7 @@ export default function PostForm() {
 
 
   return (
+
     <form
       className={classes.root}
       onSubmit={handleSubmit}
@@ -122,6 +125,7 @@ export default function PostForm() {
         </Grid>
       </Grid>
     </form >
+
   )
 }
 

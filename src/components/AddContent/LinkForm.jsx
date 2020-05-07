@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Select from './Select'
+import { firestore } from '../../firebase'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -44,7 +45,8 @@ export default function PostForm() {
       // description,
     }
 
-    console.log(link)
+    firestore.collection('content').add(link)
+
     setTitle('')
     setUrl('')
     // setDescription('')

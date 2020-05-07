@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Select from './Select'
+import { firestore } from '../../firebase'
 
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -39,8 +40,8 @@ export default function PostForm() {
       description,
     }
 
-    console.log(post)
-    //Todo: this post will be added to firebase 'name' collection
+
+    firestore.collection('content').add(post)
 
     setTitle('')
     setDescription('')
