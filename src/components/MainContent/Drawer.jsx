@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -15,7 +15,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
+
 
 
 import { CSS } from './CSS'
@@ -25,16 +25,26 @@ import { ReactComponent } from './React'
 import { ToLearn } from './ToLearn'
 import AddContent from '../AddContent/AddContent'
 
+
 import { Switch, Link, Route } from 'react-router-dom'
 
-const drawerWidth = 240;
+// window.onresize = dispalayWindowsize;
+// window.onload = dispalayWindowsize;
 
+
+// function dispalayWindowsize() {
+//   return window.innerWidth
+// }
+
+
+const drawerWidth = 240
 
 
 export default function PersistantDrawer() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const handleDrawer = () => {
     setOpen(!open);
@@ -44,11 +54,24 @@ export default function PersistantDrawer() {
     setOpen(false)
   }
 
+  const handleWindowResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  });
+
 
   const LinkStyle = {
     textDecoration: "none",
     color: 'black',
   }
+
 
   return (
     <div className={classes.root}>
@@ -71,7 +94,7 @@ export default function PersistantDrawer() {
           </IconButton>
 
           <Typography variant="h6" noWrap>
-            Personal Knowledge Base(PKB on small device)
+            {open && windowWidth < 450 ? 'PKB' : 'Personal Knowledge Base'}
           </Typography>
         </Toolbar>
       </AppBar>

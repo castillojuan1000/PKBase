@@ -21,7 +21,7 @@ export const GlobalProvider = ({ children }) => {
   }, []);
 
 
-  console.log(content)
+
 
   return (
     <GlobalContext.Provider
